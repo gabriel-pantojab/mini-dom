@@ -9,6 +9,12 @@ export function render(node, container) {
 		return;
 	}
 
+	if (typeof node.type === 'function') {
+		const nodeFunction = node.type;
+		render(nodeFunction(node.props), container);
+		return;
+	}
+
 	const element = document.createElement(node.type);
 
 	if (node.props) {

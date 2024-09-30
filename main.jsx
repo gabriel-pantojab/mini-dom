@@ -3,10 +3,10 @@ import { dom, render } from './src';
 
 const app = document.getElementById('app');
 
-const Header = (
+const Header = ({ title }) => (
 	<header>
-		<h1>Mini - DOM</h1>
+		<h1>{title}</h1>
 	</header>
 );
 
-render(Header, app);
+render(<Header title={'Mini - DOM'} />, app);
