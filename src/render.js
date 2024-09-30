@@ -1,10 +1,12 @@
-export function render(node) {
+export function render(node, container) {
 	if (typeof node === 'boolean') {
-		return document.createDocumentFragment();
+		container.appendChild(document.createDocumentFragment());
+		return;
 	}
 
 	if (typeof node === 'number' || typeof node === 'string') {
-		return document.createTextNode(node);
+		container.appendChild(document.createTextNode(node));
+		return;
 	}
 
 	const element = document.createElement(node.type);
@@ -17,9 +19,9 @@ export function render(node) {
 
 	if (node.children) {
 		for (let child of node.children) {
-			element.appendChild(render(child));
+			render(child, element);
 		}
 	}
 
-	return element;
+	container.appendChild(element);
 }
