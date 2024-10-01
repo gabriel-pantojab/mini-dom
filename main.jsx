@@ -4,7 +4,11 @@ import { dom, render } from './src';
 const app = document.getElementById('app');
 
 const Header = ({ title }) => (
-	<header className="header flex">
+	<header
+		style={{
+			color: 'red',
+		}}
+		className="header flex">
 		<h1>{title}</h1>
 	</header>
 );
