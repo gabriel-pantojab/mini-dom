@@ -19,7 +19,10 @@ export function render(node, container) {
 
 	if (node.props) {
 		for (let prop in node.props) {
-			element.setAttribute(prop, node.props[prop]);
+			if (prop === 'className') {
+				const classes = node.props.className.split(' ');
+				applyClass(element, classes);
+			} else element.setAttribute(prop, node.props[prop]);
 		}
 	}
 
@@ -30,4 +33,10 @@ export function render(node, container) {
 	}
 
 	container.appendChild(element);
+}
+
+function applyClass(element, classes) {
+	classes.forEach((className) => {
+		element.classList.add(className);
+	});
 }

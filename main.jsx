@@ -4,7 +4,7 @@ import { dom, render } from './src';
 const app = document.getElementById('app');
 
 const Header = ({ title }) => (
-	<header>
+	<header className="header flex">
 		<h1>{title}</h1>
 	</header>
 );
