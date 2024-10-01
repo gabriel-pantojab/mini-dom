@@ -1,3 +1,5 @@
+import { applyProperties } from './utils/utils';
+
 export function render(node, container) {
 	if (typeof node === 'boolean') {
 		container.appendChild(document.createDocumentFragment());
@@ -18,12 +20,7 @@ export function render(node, container) {
 	const element = document.createElement(node.type);
 
 	if (node.props) {
-		for (let prop in node.props) {
-			if (prop === 'className') {
-				const classes = node.props.className.split(' ');
-				applyClass(element, classes);
-			} else element.setAttribute(prop, node.props[prop]);
-		}
+		applyProperties(element, node.props);
 	}
 
 	if (node.children) {
@@ -33,10 +30,4 @@ export function render(node, container) {
 	}
 
 	container.appendChild(element);
-}
-
-function applyClass(element, classes) {
-	classes.forEach((className) => {
-		element.classList.add(className);
-	});
 }
