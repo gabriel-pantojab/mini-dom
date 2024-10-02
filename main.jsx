@@ -5,6 +5,7 @@ const app = document.getElementById('app');
 
 const Header = ({ title }) => (
 	<header
+		onClick={() => console.log('clicked')}
 		style={{
 			color: 'red',
 		}}

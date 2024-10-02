@@ -10,6 +10,10 @@ function applyStyles(element, styles) {
 	}
 }
 
+function addEventToElement(element, event, handleEvent) {
+	element.addEventListener(event, handleEvent);
+}
+
 function diffProps(element, prop, propValue) {
 	if (prop in element) {
 		element[prop] = propValue;
@@ -26,6 +30,9 @@ export function applyProperties(element, props) {
 		} else if (prop === 'style') {
 			const styles = props.style;
 			applyStyles(element, styles);
+		} else if (prop.startsWith('on')) {
+			const event = prop.toLowerCase().substring(2);
+			addEventToElement(element, event, props[prop]);
 		} else {
 			diffProps(element, prop, props[prop]);
 		}
